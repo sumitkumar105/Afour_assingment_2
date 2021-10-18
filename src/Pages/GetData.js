@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PostData from "./PostData";
 import AllData from "./AllData";
 import GetOneData from "../Pages/GetOneData";
 import GetCategories from "./GetCategories";
 import CartData  from "./CartData";
 import GetProductLimit from "../Pages/GetProductLimit";
+import { NavLink } from "react-router-dom";
 const GetData = () => {
   
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ const GetData = () => {
   };
   return (
     <>
+    <NavLink to="/"><button >back</button></NavLink>
       <h1>
         geting data page<button onClick={SetData}>ADD</button>
       </h1>

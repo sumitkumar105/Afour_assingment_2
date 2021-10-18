@@ -67,6 +67,7 @@ const PostData = ({ data }) => {
           val.category === "##")
       ) {
         alert("enter valid data!!!");
+        setVal({ title: "", price: "", category: "" });
       } else {
         console.log(post);
         setVal({ post });

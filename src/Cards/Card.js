@@ -18,7 +18,7 @@ const Card = () => {
              <button className="btn"><NavLink to="/post">post</NavLink></button>
           </div>
         </div> */}
-        <div className="card">
+        {/* <div className="card">
           <div className="section">
             <h1>Put Data</h1>
   
@@ -31,7 +31,7 @@ const Card = () => {
   
             <button className="btn">delete</button>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   };
