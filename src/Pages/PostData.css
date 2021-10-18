@@ -1,0 +1,43 @@
+
+.section1{
+    margin: auto;
+    height: auto;
+    width: 300px;
+    background-color: crimson;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.section_input{
+    margin:15px 0px 0px 60px;
+}
+.heading{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+.main_section{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    text-align: center;
+    font-weight: bold;
+    width: 180px;
+    height: 25px;
+    /* border: 1px soild black; */
+    border-radius: 10px;
+}
+.section_btn{
+    margin: 10px 0px 0px 120px;
+    
+}
+.submit_btn{
+
+    width: 50px;
+    background-color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    
+}

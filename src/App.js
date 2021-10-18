@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import  Card from "./Cards/Card";
+import {Switch,Route} from "react-router-dom";
+import PostData from './Pages/PostData';
+import GetData from './Pages/GetData';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      {/* <h1>hello sumitkumar Sanjay Deshpande</h1>
+      <Card/> */}
+      <Switch>
+        <Route exact path="/" component={Card}/>
+        <Route path="/post" component={PostData}/>
+        <Route path="/get" component={GetData}/>
+      </Switch>
+      
     </div>
   );
 }
