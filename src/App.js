@@ -6,7 +6,7 @@ import GetData from './Pages/GetData';
 function App() {
   return (
     <div >
-   
+   {/*new branch Added to afour_assignment_2 */}
       <Switch>
         <Route exact path="/" component={Card}/>
         <Route path="/get" component={GetData}/>
