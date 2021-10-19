@@ -82,7 +82,7 @@ const PostData = ({ data }) => {
   return (
     <div>
       <h1>
-        posting data page <button onClick={() => data(false)}>X</button>
+        post data page <button onClick={() => data(false)}>X</button>
       </h1>
       <div className="main_section">
         <div className="section1">
