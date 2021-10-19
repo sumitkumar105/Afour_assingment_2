@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Pages/getData.css";
+import { useHistory } from "react-router";
 
 const GetCategories = () => {
+  const history = useHistory();
   const url3 = "https://fakestoreapi.com/products/category/jewelery";
   const [categories, setCategories] = useState([]);
 
@@ -20,7 +22,8 @@ const GetCategories = () => {
   }, []);
   return (
     <>
-      <h1>all categories</h1>
+      <button onClick={() => history.push("/get")}>back</button>
+      <h1>Same categories</h1>
       <div className="main_data">
         <div className="section_1">
           <table style={{ border: "1px solid black" }}>

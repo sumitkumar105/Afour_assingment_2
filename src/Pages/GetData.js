@@ -1,96 +1,111 @@
 import React, { useState } from "react";
 import PostData from "./PostData";
-import AllData from "./AllData";
-import GetOneData from "../Pages/GetOneData";
-import GetCategories from "./GetCategories";
-import CartData  from "./CartData";
-import GetProductLimit from "../Pages/GetProductLimit";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const GetData = () => {
-  
+  const history = useHistory();
   const [open, setOpen] = useState(false);
-  
-  const [active, setActive] = useState("");
 
-  
   // console.log("checking data", product);
 
-  const SetData = () => {
-    setOpen(true);
-    console.log("true");
-  };
-  const First = () => {
-    setActive("first");
-  };
-  const Second = () => {
-    setActive("two");
-  };
-  const Third = () => {
-    setActive("third");
-  };
-  const Fourth = () => {
-    setActive("fourth");
-  };
-  const Five = () => {
-    setActive("five");
-  };
-  const Six = () => {
-    alert("six");
-  };
+ 
+
   return (
     <>
-    <NavLink to="/"><button >back</button></NavLink>
+      <button onClick={() => history.push("/")}>back</button>
+
       <h1>
-        geting data page<button onClick={SetData}>ADD</button>
+        <button className="Add" onClick={()=>history.push('/post')}>Add Data</button>
       </h1>
-      { open ? (
-        <PostData data={setOpen}  />
-      ) : (
-        console.log("error")
-      )}
+      {/* {open ? <PostData data={setOpen} /> : console.log("error")} */}
       <div className="collection_btn">
-        <button className="event-btn" onClick={First}>
-          A
-        </button>
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1> Product Data</h1>
 
-        <button className="event-btn" onClick={Second}>
-          B
-        </button>
+              <button
+                onClick={() => history.push("/getAllData")}
+                className="btn"
+              >
+                AllData
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <button className="event-btn" onClick={Third}>
-          C
-        </button>
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1>Fetching One Record</h1>
 
-        <button className="event-btn" onClick={Fourth}>
-          D
-        </button>
+              <button
+                onClick={() => history.push("/getOneData")}
+                className="btn"
+              >
+                OneData
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <button className="event-btn" onClick={Five}>
-          E
-        </button>
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1> OneCategories</h1>
 
-        <button className="event-btn" onClick={Six}>
-          F
-        </button>
+              <button
+                onClick={() => history.push("/getCategories")}
+                className="btn"
+              >
+                Categories
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        {
-          active==="first" && <AllData/>
-        }
-        {
-          active==="two" && <GetOneData/>
-        }
-        {
-          active==="third" && <GetCategories/>
-        }
-        {
-          active==="fourth" && <CartData/>
-        }
-         {
-          active==="five" && <GetProductLimit/>
-        }
+      <div className="collection_btn">
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1>Fetching Cart Data</h1>
+
+              <button onClick={() => history.push("/cart")} className="btn">
+                CartData
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1> Product upto Limit </h1>
+
+              <button
+                onClick={() => history.push("/getOneData")}
+                className="btn"
+              >
+                LimitData
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="main">
+          <div className="card">
+            <div className="section">
+              <h1>All Categories</h1>
+
+              <button
+                onClick={() => history.push("/allCategories")}
+                className="btn"
+              >
+                Categories
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      
     </>
   );
 };

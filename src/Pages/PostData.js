@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../Pages/PostData.css";
 import axios from "axios";
+import { useHistory } from "react-router";
 // data,newData
-const PostData = ({ data }) => {
+const PostData = () => {
+  const history=useHistory();
   const [post, setPost] = useState();
   const [prod, setProd] = useState([]);
   const [val, setVal] = useState({
@@ -81,8 +83,9 @@ const PostData = ({ data }) => {
 
   return (
     <div>
+        <button onClick={() => history.push("/get")}>back</button>
       <h1>
-        post data page <button onClick={() => data(false)}>X</button>
+        posting data page 
       </h1>
       <div className="main_section">
         <div className="section1">
