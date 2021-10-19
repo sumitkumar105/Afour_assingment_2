@@ -1,19 +1,23 @@
 import React from "react";
 import "../Cards/Card.css";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const Card = () => {
+  const history = useHistory();
   return (
+    <>
+    <h1>Main Page</h1>
     <div className="main">
       <div className="card">
         <div className="section">
           <h1>fetching Data</h1>
 
-          <button className="btn">
-            <NavLink to="/get">get</NavLink>
+          <button onClick={() => history.push("/get")} className="btn">
+            getData
           </button>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

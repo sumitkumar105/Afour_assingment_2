@@ -47,3 +47,15 @@ th {
   font-weight: bold;
   text-align: center;
 }
+.update{
+  background-color: darkgreen;
+  font-weight: bold;
+}
+.delete{
+  background-color: red;
+  font-weight: bold;
+}
+.Add{
+  background-color: hotpink;
+  font-weight: bold;
+}

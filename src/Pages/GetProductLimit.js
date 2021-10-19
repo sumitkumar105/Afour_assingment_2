@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import "../Pages/getData.css";
-
+import { useHistory } from "react-router";
 
  const AllData =()=>{
+   const history=useHistory();
     const url1 = "https://fakestoreapi.com/products?limit=5";
     const [limit, setLimit] = useState([]);
 
@@ -20,6 +21,7 @@ import "../Pages/getData.css";
       }, []);
     return(
         <>
+          <button onClick={() => history.push("/get")}>back</button>
         <h1>all datad</h1>
         <div className="main_data">
         <div className="section_1">

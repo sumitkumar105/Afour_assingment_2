@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Pages/getData.css";
-
+import { useHistory } from "react-router-dom";
 const AllData = () => {
+  const history = useHistory();
   const url1 = "https://fakestoreapi.com/products";
   const [product, setProduct] = useState([]);
   const [updatedData, setUpdatedData] = useState([]);
@@ -37,6 +38,7 @@ const AllData = () => {
     setUpdatedData(newData);
     // setProduct(newData)
     console.log("updated Data total", newData);
+    setOpen(true);
   }
   function DeleteData(id) {
     fetch(`https://fakestoreapi.com/products/${id}`, {
@@ -69,21 +71,16 @@ const AllData = () => {
     console.log(updatedData);
     // setProduct(response.data))
   }
-  function OpenUpadateForm() {
-    setOpen(true);
-  }
 
   return (
     <>
-      <h1>
-        all datad<button onClick={OpenUpadateForm}>update</button>
-      </h1>
+      <button onClick={() => history.push("/get")}>back</button>
+
+      <h1>Product Data</h1>
       {Open ? (
         <div className="main_section">
           <div className="section1">
-            <p className="heading">
-              input form <button onClick={() => setOpen(false)}>X</button>
-            </p>
+            <p className="heading">input form<button onClick={()=>setOpen(false)}>X</button></p>
             <div className="section_input">
               <input
                 type="text"
@@ -198,10 +195,14 @@ const AllData = () => {
                   <td>{v.description}</td>
                   <td>{v.category}</td>
                   <td>
-                    <button onClick={() => SelectData(v.id)}>update</button>
+                    <button className="update" onClick={() => SelectData(v.id)}>
+                      update
+                    </button>
                   </td>
                   <td>
-                    <button onClick={() => DeleteData(v.id)}>delete</button>
+                    <button className="delete" onClick={() => DeleteData(v.id)}>
+                      delete
+                    </button>
                   </td>
                 </tr>
               );
