@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Pages/getData.css";
 // import "../Pages/ProductCard.css";
-import { Route, Link, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import GetOneData from "../Pages/GetOneData";
+
 const AllData = () => {
   const history = useHistory();
   const url1 = "https://fakestoreapi.com/products";
@@ -74,18 +75,16 @@ const AllData = () => {
     console.log(updatedData);
     // setProduct(response.data))
   }
-  
-
- 
 
   const goToReceiver = (id) => {
-    
-    history.push("/getOneData",{prodid:id});
-  }
+    history.push("/one", { prodid: id });
+
+    console.log(id);
+  };
 
   return (
     <>
-      <Route path="/getOneData" component={GetOneData} />
+    
 
       <button onClick={() => history.push("/get")}>back</button>
 
@@ -233,14 +232,13 @@ const AllData = () => {
                               {v.category}
                             </p>
                             <p>
-                              <span className="product_heading">
-                                Ratings:{" "}
-                              </span>
+                              <span className="product_heading">Ratings: </span>
                               {v.rating.rate}
                             </p>
-                            
-                              <button onClick={()=>goToReceiver(v.id)}>details</button>
-                           
+
+                            <button onClick={() => goToReceiver(v.id)}>
+                              details
+                            </button>
                           </div>
                         </div>
                       </div>

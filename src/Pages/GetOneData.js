@@ -4,7 +4,7 @@ import "../Pages/getData.css";
 import { useHistory } from "react-router-dom";
 import { useLocation } from 'react-router';
 
-const AllData = () => {
+const GetOneData = () => {
   const location = useLocation();
   console.log(location.state.prodid);
   const history = useHistory();
@@ -94,4 +94,4 @@ const AllData = () => {
     </>
   );
 };
-export default AllData;
+export default GetOneData;
