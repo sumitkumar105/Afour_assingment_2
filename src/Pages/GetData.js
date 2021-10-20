@@ -7,14 +7,14 @@ const GetData = () => {
 
   // console.log("checking data", product);
 
- 
-
   return (
     <>
       <button onClick={() => history.push("/")}>back</button>
 
       <h1>
-        <button className="Add" onClick={()=>history.push('/post')}>Add Data</button>
+        <button className="Add" onClick={() => history.push("/post")}>
+          Add Data
+        </button>
       </h1>
       {/* {open ? <PostData data={setOpen} /> : console.log("error")} */}
       <div className="collection_btn">
@@ -28,21 +28,6 @@ const GetData = () => {
                 className="btn"
               >
                 AllData
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className="card">
-            <div className="section">
-              <h1>Fetching One Record</h1>
-
-              <button
-                onClick={() => history.push("/getOneData")}
-                className="btn"
-              >
-                OneData
               </button>
             </div>
           </div>
@@ -76,35 +61,7 @@ const GetData = () => {
           </div>
         </div>
 
-        <div className="main">
-          <div className="card">
-            <div className="section">
-              <h1> Product upto Limit </h1>
-
-              <button
-                onClick={() => history.push("/getOneData")}
-                className="btn"
-              >
-                LimitData
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className="card">
-            <div className="section">
-              <h1>All Categories</h1>
-
-              <button
-                onClick={() => history.push("/allCategories")}
-                className="btn"
-              >
-                Categories
-              </button>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </>
   );

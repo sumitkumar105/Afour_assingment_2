@@ -7,7 +7,7 @@ const Card = () => {
     <>
     <h1>Main Page</h1>
     <div className="main">
-      <div className="card">
+      <div className="card1">
         <div className="section">
           <h1>fetching Data</h1>
 

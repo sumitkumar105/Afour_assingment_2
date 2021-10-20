@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Pages/getData.css";
-import { useHistory } from "react-router-dom";
+// import "../Pages/ProductCard.css";
+import { Route, Link, useHistory } from "react-router-dom";
+import GetOneData from "../Pages/GetOneData";
 const AllData = () => {
   const history = useHistory();
   const url1 = "https://fakestoreapi.com/products";
@@ -10,6 +12,7 @@ const AllData = () => {
   const [Open, setOpen] = useState(false);
   const [del, setDel] = useState([]);
   const [opendel, setOpenDel] = useState(false);
+  // const [id, setId] = useState(0);
   console.log(updatedData);
 
   useEffect(() => {
@@ -71,16 +74,28 @@ const AllData = () => {
     console.log(updatedData);
     // setProduct(response.data))
   }
+  
+
+ 
+
+  const goToReceiver = (id) => {
+    
+    history.push("/getOneData",{prodid:id});
+  }
 
   return (
     <>
+      <Route path="/getOneData" component={GetOneData} />
+
       <button onClick={() => history.push("/get")}>back</button>
 
       <h1>Product Data</h1>
       {Open ? (
         <div className="main_section">
           <div className="section1">
-            <p className="heading">input form<button onClick={()=>setOpen(false)}>X</button></p>
+            <p className="heading">
+              input form<button onClick={() => setOpen(false)}>X</button>
+            </p>
             <div className="section_input">
               <input
                 type="text"
@@ -173,43 +188,87 @@ const AllData = () => {
       ) : (
         console.log("error")
       )}
+      {
+        <div className="main_data">
+          <div className="section_1">
+            <table style={{ border: "1px solid black" }}>
+              <tr>
+                <th>Data</th>
 
-      <div className="main_data">
-        <div className="section_1">
-          <table style={{ border: "1px solid black" }}>
-            <tr>
-              <th>id</th>
-              <th>title</th>
-              <th>Price</th>
-              <th>description</th>
-              <th>category</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-            {Object.values(product).map((v, index) => {
-              return (
-                <tr key={v.id}>
-                  <td>{v.id}</td>
-                  <td>{v.title}</td>
-                  <td>{v.price}</td>
-                  <td>{v.description}</td>
-                  <td>{v.category}</td>
-                  <td>
-                    <button className="update" onClick={() => SelectData(v.id)}>
-                      update
-                    </button>
-                  </td>
-                  <td>
-                    <button className="delete" onClick={() => DeleteData(v.id)}>
-                      delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </table>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+              {Object.values(product).map((v, index) => {
+                return (
+                  <tr key={v.id}>
+                    <td>
+                      <div className="main_product">
+                        <div className="card_main">
+                          <div className="photose">
+                            <img
+                              className="images_product"
+                              src={v.image}
+                              alt="product"
+                            />
+                          </div>
+                          <div>
+                            <p>
+                              <span className="product_heading">ID: </span>
+                              {v.id}
+                            </p>
+                            <p>
+                              <span className="product_heading">Price: </span>
+                              {v.price}
+                            </p>
+                            {/* <p>
+                              <span className="product_heading">
+                                description:{" "}
+                              </span>
+                              {v.description}
+                            </p> */}
+                            <p>
+                              <span className="product_heading">
+                                category:{" "}
+                              </span>
+                              {v.category}
+                            </p>
+                            <p>
+                              <span className="product_heading">
+                                Ratings:{" "}
+                              </span>
+                              {v.rating.rate}
+                            </p>
+                            
+                              <button onClick={()=>goToReceiver(v.id)}>details</button>
+                           
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <button
+                        className="update"
+                        onClick={() => SelectData(v.id)}
+                      >
+                        update
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="delete"
+                        onClick={() => DeleteData(v.id)}
+                      >
+                        delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
         </div>
-      </div>
+      }
     </>
   );
 };

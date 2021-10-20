@@ -3,7 +3,7 @@ import axios from "axios";
 import "../Pages/getData.css";
 import { useHistory } from "react-router";
 const Categories = () => {
-  const history=useHistory();
+  const history = useHistory();
   const url3 = "https://fakestoreapi.com/products/categories";
   const [categories, setCategories] = useState([]);
 
