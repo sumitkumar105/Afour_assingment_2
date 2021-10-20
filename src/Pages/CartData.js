@@ -3,7 +3,7 @@ import axios from "axios";
 import "../Pages/getData.css";
 import { useHistory } from "react-router";
 const CartData = () => {
-  const history=useHistory();
+  const history = useHistory();
   const url3 = "https://fakestoreapi.com/carts?userId=1'";
   const [Cart, setCart] = useState([]);
 
@@ -30,8 +30,6 @@ const CartData = () => {
               <th>id</th>
               <th>userId</th>
               <th>date</th>
-            
-            
             </tr>
             {Cart.map((v, index) => {
               return (
@@ -39,8 +37,6 @@ const CartData = () => {
                   <td>{v.id}</td>
                   <td>{v.userId}</td>
                   <td>{v.date}</td>
-                 
-                  
                 </tr>
               );
             })}
