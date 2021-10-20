@@ -8,7 +8,7 @@ import GetCategories from './Pages/GetCategories';
 import Categories from './Pages/Categories';
 import CartData from './Pages/CartData';
 import PostData from './Pages/PostData';
-import Structure from './Cards/Sturcture';
+// import Structure from './Cards/Sturcture';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/" component={Card}/>
         <Route path="/get" component={GetData}/>
         <Route path="/getAllData" component={AllData}/>
-       
+        <Route path="/one" component={GetOneData} />
         <Route path="/getCategories" component={GetCategories}/>
         <Route path="/cart" component={CartData}/>
         <Route path="/allCategories" component={Categories}/>
