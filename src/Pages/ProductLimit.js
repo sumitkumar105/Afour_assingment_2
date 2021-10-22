@@ -1,35 +1,35 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../Pages/getData.css";
+import { useHistory } from "react-router";
 
-const Mens = () => {
-  const url3 = `https://fakestoreapi.com/products/category/men's clothing`;
-  const [categories, setCategories] = useState([]);
+const AllData = () => {
+  const history = useHistory();
+  const url1 = "https://fakestoreapi.com/products?limit=5";
+  const [limit, setLimit] = useState([]);
 
   useEffect(() => {
     async function fetchingData() {
       try {
-        const fetch = await axios.get(url3);
-        setCategories(fetch.data);
-        console.log(fetch.data);
+        const fetch = await axios.get(url1);
+        setLimit(fetch.data);
       } catch (err) {
         console.log(err);
       }
     }
     fetchingData();
-  }, [url3]);
-
+  }, []);
   return (
     <>
-      <h1>Same categories</h1>
-
+      <button onClick={() => history.push("/get")}>back</button>
+      <h1>all datad</h1>
       <div className="main_data">
         <div className="section_1">
           <table style={{ border: "1px solid black" }}>
             <tr>
-              <th>Mens data</th>
+              <th>The Data</th>
             </tr>
-            {categories.map((v, index) => {
+            {limit.map((v, index) => {
               return (
                 <tr key={v.id}>
                   <td>
@@ -61,6 +61,14 @@ const Mens = () => {
                             <span className="product_heading">category: </span>
                             {v.category}
                           </p>
+                          {/* <p>
+                            <span className="product_heading">Ratings: </span>
+                            {updatedData.rating.rate}
+                          </p> */}
+
+                          {/* <button onClick={() => goToReceiver(v.id)}>
+                              details
+                            </button> */}
                         </div>
                       </div>
                     </div>
@@ -74,4 +82,4 @@ const Mens = () => {
     </>
   );
 };
-export default Mens;
+export default AllData;
