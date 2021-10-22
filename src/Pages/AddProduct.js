@@ -5,7 +5,7 @@ import "../Cards/Structure.css";
 // import "../Pages/ProductCard.css";
 import { useHistory } from "react-router";
 // data,newData
-const PostData = () => {
+const AddProduct = () => {
   const history = useHistory();
   const [post, setPost] = useState();
   const [prod, setProd] = useState([]);
@@ -152,7 +152,7 @@ const PostData = () => {
               />
             </div>
             <div>
-              <h1>{post.title}</h1>
+              <p>{post.title}</p>
               <p>{post.price}</p>
               <p>{post.description}</p>
               <p>{post.category}</p>
@@ -166,4 +166,4 @@ const PostData = () => {
     </div>
   );
 };
-export default PostData;
+export default AddProduct;

@@ -4,7 +4,7 @@ import "../Pages/getData.css";
 import { useHistory } from "react-router-dom";
 import { useLocation } from 'react-router';
 
-const GetOneData = () => {
+const Details = () => {
   const location = useLocation();
   console.log(location.state.prodid);
   const history = useHistory();
@@ -22,7 +22,7 @@ const GetOneData = () => {
       }
     }
     fetchingData();
-  }, []);
+  }, [url2]);
   
  console.log(location.state.prodid);
   return (
@@ -35,10 +35,7 @@ const GetOneData = () => {
           <table style={{ border: "1px solid black" }}>
             <tr>
               <th>Details of Product</th>
-              {/* <th>title</th>
-              <th>Price</th>
-              <th>description</th>
-              <th>category</th> */}
+              
             </tr>
             {
               <tr>
@@ -94,4 +91,4 @@ const GetOneData = () => {
     </>
   );
 };
-export default GetOneData;
+export default Details;

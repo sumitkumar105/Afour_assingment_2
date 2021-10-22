@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Pages/getData.css";
-// import "../Pages/ProductCard.css";
-import { Route, useHistory } from "react-router-dom";
-import GetOneData from "../Pages/GetOneData";
+
+import { useHistory } from "react-router-dom";
 
 const AllData = () => {
   const history = useHistory();
@@ -12,8 +11,8 @@ const AllData = () => {
   const [updatedData, setUpdatedData] = useState([]);
   const [Open, setOpen] = useState(false);
   const [del, setDel] = useState([]);
+  const [checkStatus, setCheckStatus] = useState(false);
   const [opendel, setOpenDel] = useState(false);
-  // const [id, setId] = useState(0);
   console.log(updatedData);
 
   useEffect(() => {
@@ -27,8 +26,8 @@ const AllData = () => {
     }
     fetchingData();
   }, []);
-  function SelectData(id) {
-    // alert(`update: ${id}`);
+  async function SelectData(id) {
+   
     console.log(product[id - 1]);
     const item = product[id - 1];
 
@@ -39,43 +38,59 @@ const AllData = () => {
       category: item.category,
     };
     // console.log("updated dat",newData);
-    setUpdatedData(newData);
-    // setProduct(newData)
-    console.log("updated Data total", newData);
-    setOpen(true);
-  }
-  function DeleteData(id) {
-    fetch(`https://fakestoreapi.com/products/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((json) => setDel(json));
-    setOpenDel(true);
-  }
-  console.log(del);
-
-  async function UpdateData() {
-    //  .then((response) => console.log(response.data));
 
     try {
-      const Updated_val = {
-        title: updatedData.title,
-        price: updatedData.price,
-        description: updatedData.description,
-        category: updatedData.category,
-      };
-      console.log("in udate function", Updated_val);
-      const fetch = await axios.put(url1, Updated_val);
+      
+      console.log("in udate function", newData);
+      const fetch = await axios.put(url1, newData);
 
       setUpdatedData(fetch.data);
     } catch (err) {
       console.log(err);
     }
-
-    console.log(updatedData);
-    // setProduct(response.data))
+    setUpdatedData(newData);
+    // setProduct(newData)
+    console.log("updated Data total", newData);
+    setOpen(true);
   }
+  async function DeleteData(id) {
+    
+    try {
+      const resp = await axios.delete(
+        `https://fakestoreapi.com/products/${id}`
+      );
+      setDel(resp.data);
+      setOpenDel(true);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  console.log(del);
 
+  // async function UpdateData() {
+  //   //  .then((response) => console.log(response.data));
+
+  //   try {
+  //     const Updated_val = {
+  //       title: updatedData.title,
+  //       price: updatedData.price,
+  //       description: updatedData.description,
+  //       category: updatedData.category,
+  //     };
+  //     console.log("in udate function", Updated_val);
+  //     const fetch = await axios.put(url1, Updated_val);
+
+  //     setUpdatedData(fetch.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+
+  //   console.log(updatedData);
+  //   // setProduct(response.data))
+  // }
+  function UpdateData() {
+    setCheckStatus(true);
+  }
   const goToReceiver = (id) => {
     history.push("/one", { prodid: id });
 
@@ -84,8 +99,6 @@ const AllData = () => {
 
   return (
     <>
-    
-
       <button onClick={() => history.push("/get")}>back</button>
 
       <h1>Product Data</h1>
@@ -135,24 +148,60 @@ const AllData = () => {
       ) : (
         console.log("error to open update form")
       )}
-      {Open && updatedData ? (
+      {Open && checkStatus ? (
         <div className="main_data">
           <div className="section_1">
             <table style={{ border: "1px solid black" }}>
               <tr>
                 <th>id</th>
-                <th>title</th>
+                {/* <th>title</th>
                 <th>Price</th>
                 <th>description</th>
-                <th>category</th>
+                <th>category</th> */}
               </tr>
               {
                 <tr>
-                  <td>{updatedData.id}</td>
-                  <td>{updatedData.title}</td>
-                  <td>{updatedData.price}</td>
-                  <td>{updatedData.description}</td>
-                  <td>{updatedData.category}</td>
+                  <td>
+                    <div className="main_product">
+                      <div className="card_main">
+                        <div className="photose">
+                          <img
+                            className="images_product"
+                            src={updatedData.image}
+                            alt="product"
+                          />
+                        </div>
+                        <div>
+                          <p>
+                            <span className="product_heading">ID: </span>
+                            {updatedData.id}
+                          </p>
+                          <p>
+                            <span className="product_heading">Price: </span>
+                            {updatedData.price}
+                          </p>
+                          <p>
+                            <span className="product_heading">
+                              description:{" "}
+                            </span>
+                            {updatedData.description}
+                          </p>
+                          <p>
+                            <span className="product_heading">category: </span>
+                            {updatedData.category}
+                          </p>
+                          {/* <p>
+                            <span className="product_heading">Ratings: </span>
+                            {updatedData.rating.rate}
+                          </p> */}
+
+                          {/* <button onClick={() => goToReceiver(v.id)}>
+                              details
+                            </button> */}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               }
             </table>
@@ -166,19 +215,55 @@ const AllData = () => {
           <div className="section_1">
             <table style={{ border: "1px solid black" }}>
               <tr>
-                <th>id</th>
-                <th>title</th>
-                <th>Price</th>
-                <th>description</th>
-                <th>category</th>
+                <th>Deleted Data</th>
               </tr>
               {
                 <tr>
-                  <td>{del.id}</td>
-                  <td>{del.title}</td>
+                  <td>
+                    <div className="main_product">
+                      <div className="card_main">
+                        <div className="photose">
+                          <img
+                            className="images_product"
+                            src={del.image}
+                            alt="product"
+                          />
+                        </div>
+                        <div>
+                          <p>
+                            <span className="product_heading">ID: </span>
+                            {del.id}
+                          </p>
+                          <p>
+                            <span className="product_heading">Price: </span>
+                            {del.price}
+                          </p>
+                          <p>
+                            <span className="product_heading">
+                              description:{" "}
+                            </span>
+                            {del.description}
+                          </p>
+                          <p>
+                            <span className="product_heading">category: </span>
+                            {del.category}
+                          </p>
+                          <p>
+                            <span className="product_heading">Ratings: </span>
+                            {del.rating.rate}
+                          </p>
+
+                          {/* <button onClick={() => goToReceiver(v.id)}>
+                              details
+                            </button> */}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  {/* <td>{del.title}</td>
                   <td>{del.price}</td>
                   <td>{del.description}</td>
-                  <td>{del.category}</td>
+                  <td>{del.category}</td> */}
                 </tr>
               }
             </table>
